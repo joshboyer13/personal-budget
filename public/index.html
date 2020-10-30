@@ -138,28 +138,12 @@
     <script>
     dataSource = {
     datasets: [{
-        data: [30, 350, 90, 100, 200, 300, 400],
-        backgroundColor: [
-                '#F70505',
-                '#0000FF',
-                '#16F705',
-                '#05E7F7',
-                '#F705F7',
-                '#EFF705',
-                '#F75605'
-            ],
+        data: [],
+        backgroundColor: [ ],
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-        'Eat Out',
-        'Rent',
-        "Car Payment",
-        "Entertainment",
-        "Medical",
-        "Savings",
-        'Groceries'
-    ]
+    labels: []
     };
 
     function createChart(){
@@ -176,8 +160,9 @@
         .then(function (res){
             console.log(res.data);
             for (var i = 0; i < res.data.length; i++){
-                dataSource.datasets[0].data[i] = res.data[i].budget;
-                dataSource.labels[i] = res.data[i].title;
+                dataSource.datasets[0].data[i] = res.data[i].value;
+                dataSource.labels[i] = res.data[i].label;
+                dataSource.datasets[0].backgroundColor[i] = res.data[i].color;
             }
 
             createChart();
